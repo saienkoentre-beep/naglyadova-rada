@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Наглядова рада ЗПО — Дорожня карта</title>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&family=Geologica:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0B1F3A;
+  --blue: #1A4A8A;
+  --sky: #2E7DD1;
+  --accent: #F5A623;
+  --gold: #E8920F;
+  --green: #2ECC71;
+  --red: #E74C3C;
+  --light: #F0F4FA;
+  --muted: #8A9BB5;
+  --white: #FFFFFF;
+  --card: #FFFFFF;
+  --border: #D6E0EF;
+  --shadow: 0 4px 24px rgba(11,31,58,0.10);
+  --shadow-lg: 0 12px 48px rgba(11,31,58,0.16);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Geologica', sans-serif;
+  background: var(--light);
+  color: var(--navy);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── HEADER ── */
+header {
+  background: var(--navy);
+  padding: 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+}
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 32px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.logos {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.logo-img {
+  height: 36px;
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+}
+.header-badge {
+  background: var(--accent);
+  color: var(--navy);
+  font-family: 'Unbounded', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+}
+.header-title {
+  padding: 10px 32px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.header-title h1 {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--white);
+  line-height: 1.3;
+}
+.header-title span {
+  color: var(--accent);
+}
+
+/* ── NAV ── */
+nav {
+  background: var(--blue);
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+nav::-webkit-scrollbar { display: none; }
+.nav-btn {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.7);
+  font-family: 'Geologica', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 13px 22px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+  border-bottom: 3px solid transparent;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.nav-btn:hover { color: white; background: rgba(255,255,255,0.08); }
+.nav-btn.active { color: var(--accent); border-bottom-color: var(--accent); background: rgba(245,166,35,0.08); }
+
+/* ── MAIN ── */
+main { max-width: 1200px; margin: 0 auto; padding: 32px 20px 60px; }
+
+/* ── SECTIONS ── */
+.section { display: none; animation: fadeIn 0.3s ease; }
+.section.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+  border-radius: 20px;
+  padding: 48px 40px;
+  color: white;
+  margin-bottom: 32px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(245,166,35,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-tag {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--navy);
+  font-family: 'Unbounded', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 5px 14px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
+}
+.hero h2 {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.25;
+  margin-bottom: 16px;
+  max-width: 700px;
+}
+.hero p { font-size: 16px; color: rgba(255,255,255,0.75); max-width: 600px; line-height: 1.6; margin-bottom: 28px; }
+.hero-stats {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.stat-item { text-align: center; }
+.stat-num { font-family: 'Unbounded', sans-serif; font-size: 28px; font-weight: 700; color: var(--accent); }
+.stat-label { font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 2px; }
+
+/* ── INFO CARDS ── */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-bottom: 32px;
+}
+.info-card {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.info-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+.card-icon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  background: var(--light);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  margin-bottom: 16px;
+}
+.info-card h3 { font-family: 'Unbounded', sans-serif; font-size: 14px; font-weight: 600; margin-bottom: 10px; color: var(--navy); }
+.info-card p { font-size: 14px; color: #4A5568; line-height: 1.6; }
+
+/* ── TABLE ── */
+.table-card {
+  background: var(--card);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+.table-card-header {
+  background: var(--navy);
+  color: white;
+  padding: 18px 24px;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+table { width: 100%; border-collapse: collapse; }
+th { background: var(--light); padding: 12px 16px; text-align: left; font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); }
+td { padding: 13px 16px; font-size: 14px; border-bottom: 1px solid var(--border); color: var(--navy); vertical-align: top; line-height: 1.5; }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: #F7FAFF; }
+
+/* ── ROADMAP ── */
+.roadmap-header {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.roadmap-header h2 { font-family: 'Unbounded', sans-serif; font-size: 18px; color: var(--navy); }
+.deadline-badge {
+  background: linear-gradient(135deg, var(--accent), var(--gold));
+  color: var(--navy);
+  font-family: 'Unbounded', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 8px 18px;
+  border-radius: 20px;
+}
+
+.stages { display: flex; flex-direction: column; gap: 16px; }
+.stage-card {
+  background: var(--card);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+.stage-card:hover { box-shadow: var(--shadow-lg); }
+.stage-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+  cursor: pointer;
+  user-select: none;
+}
+.stage-num {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: var(--blue);
+  color: white;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.stage-card[data-stage="1"] .stage-num { background: #1A4A8A; }
+.stage-card[data-stage="2"] .stage-num { background: #1E6DB5; }
+.stage-card[data-stage="3"] .stage-num { background: #2E7DD1; }
+.stage-card[data-stage="4"] .stage-num { background: #3B8FE8; }
+.stage-card[data-stage="5"] .stage-num { background: #4AA3F5; }
+
+.stage-meta { flex: 1; }
+.stage-title { font-family: 'Unbounded', sans-serif; font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
+.stage-period { font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+.stage-toggle {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--light);
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.3s;
+  flex-shrink: 0;
+}
+.stage-card.open .stage-toggle { transform: rotate(180deg); }
+
+.stage-body {
+  display: none;
+  border-top: 1px solid var(--border);
+  padding: 24px;
+}
+.stage-card.open .stage-body { display: block; }
+
+.steps-list { list-style: none; margin-bottom: 20px; }
+.steps-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.steps-list li:last-child { border-bottom: none; }
+.step-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--sky);
+  flex-shrink: 0;
+  margin-top: 6px;
+}
+.step-deadline {
+  margin-left: auto;
+  font-size: 11px;
+  color: var(--accent);
+  font-weight: 600;
+  white-space: nowrap;
+  padding: 2px 8px;
+  background: rgba(245,166,35,0.1);
+  border-radius: 8px;
+}
+
+.docs-title {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+.doc-links { display: flex; flex-wrap: wrap; gap: 10px; }
+.doc-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--light);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 9px 14px;
+  font-size: 13px;
+  color: var(--blue);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+.doc-link:hover {
+  background: var(--blue);
+  color: white;
+  border-color: var(--blue);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(26,74,138,0.2);
+}
+.doc-link .doc-icon { font-size: 16px; }
+
+/* ── LIBRARY ── */
+.lib-filter {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+.filter-btn {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 8px 18px;
+  font-family: 'Geologica', sans-serif;
+  font-size: 13px;
+  color: var(--navy);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.filter-btn:hover { border-color: var(--blue); color: var(--blue); }
+.filter-btn.active { background: var(--blue); color: white; border-color: var(--blue); }
+
+.lib-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+.lib-card {
+  background: var(--card);
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+.lib-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+.lib-card-top {
+  padding: 20px 20px 14px;
+  flex: 1;
+}
+.lib-card-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.tag-1 { background: #E8F0FD; color: #1A4A8A; }
+.tag-2 { background: #E8F6FF; color: #1E6DB5; }
+.tag-3 { background: #E8F3FF; color: #2E7DD1; }
+.tag-4 { background: #EFF7FF; color: #3B8FE8; }
+.tag-5 { background: #F0F9FF; color: #4AA3F5; }
+.tag-norm { background: #FFF3E0; color: #E8920F; }
+.lib-card h4 { font-family: 'Unbounded', sans-serif; font-size: 13px; font-weight: 600; color: var(--navy); margin-bottom: 8px; line-height: 1.4; }
+.lib-card p { font-size: 13px; color: #5A6A80; line-height: 1.5; }
+.lib-card-bottom {
+  padding: 12px 20px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.lib-download {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--blue);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 6px 14px;
+  background: var(--light);
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+.lib-download:hover { background: var(--blue); color: white; }
+.lib-type { font-size: 11px; color: var(--muted); }
+
+/* ── LEGAL ── */
+.legal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 20px;
+  margin-bottom: 28px;
+}
+.legal-card {
+  background: var(--card);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.legal-card-header {
+  padding: 20px 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+.legal-icon {
+  width: 52px; height: 52px;
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+.legal-icon.law { background: #FFF3E0; }
+.legal-icon.order { background: #E8F0FD; }
+.legal-card h3 { font-family: 'Unbounded', sans-serif; font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+.legal-card .legal-sub { font-size: 12px; color: var(--muted); }
+.legal-articles {
+  padding: 0 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.legal-article {
+  background: var(--light);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.art-num { font-weight: 700; color: var(--blue); min-width: 70px; font-family: 'Unbounded', sans-serif; font-size: 11px; }
+.legal-download-btn {
+  margin: 0 24px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--blue);
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+.legal-download-btn:hover { background: var(--navy); }
+
+/* ── MONITORING ── */
+.monitoring-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.mon-card {
+  background: var(--card);
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  text-align: center;
+}
+.mon-num { font-family: 'Unbounded', sans-serif; font-size: 32px; font-weight: 700; }
+.mon-num.total { color: var(--navy); }
+.mon-num.done { color: var(--green); }
+.mon-num.progress { color: var(--accent); }
+.mon-num.pending { color: var(--muted); }
+.mon-label { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+.mon-progress-bar {
+  background: var(--card);
+  border-radius: 14px;
+  padding: 20px 24px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  margin-bottom: 24px;
+}
+.mon-progress-bar h3 { font-family: 'Unbounded', sans-serif; font-size: 14px; margin-bottom: 16px; }
+.progress-track {
+  background: var(--light);
+  border-radius: 8px;
+  height: 12px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+.progress-fill {
+  height: 100%;
+  border-radius: 8px;
+  background: linear-gradient(90deg, var(--sky), var(--accent));
+  transition: width 0.8s ease;
+}
+.progress-labels { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); }
+
+.mon-table-wrapper {
+  background: var(--card);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.mon-table-header {
+  background: var(--navy);
+  color: white;
+  padding: 16px 24px;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 13px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.update-note { font-size: 11px; color: rgba(255,255,255,0.5); font-family: 'Geologica', sans-serif; font-weight: 400; }
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+.status-done { background: #EAFAF1; color: #27AE60; }
+.status-progress { background: #FEF9E7; color: #E67E22; }
+.status-pending { background: #F5F5F5; color: #95A5A6; }
+
+/* ── FAQ ── */
+.faq-list { display: flex; flex-direction: column; gap: 12px; }
+.faq-item {
+  background: var(--card);
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.faq-q {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 15px;
+  gap: 16px;
+}
+.faq-q:hover { background: var(--light); }
+.faq-icon { font-size: 18px; transition: transform 0.3s; flex-shrink: 0; color: var(--blue); }
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+.faq-a {
+  display: none;
+  padding: 0 22px 18px;
+  font-size: 14px;
+  color: #4A5568;
+  line-height: 1.7;
+  border-top: 1px solid var(--border);
+  padding-top: 14px;
+}
+.faq-item.open .faq-a { display: block; }
+
+/* ── SECTION TITLES ── */
+.section-title {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-title::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, var(--border), transparent);
+}
+
+/* ── COMPARISON TABLE ── */
+.compare-table { border-collapse: collapse; width: 100%; }
+.compare-table th { background: var(--navy); color: white; padding: 14px 18px; font-family: 'Unbounded', sans-serif; font-size: 12px; }
+.compare-table td { padding: 13px 18px; font-size: 14px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
+.compare-table td:first-child { color: #E74C3C; background: #FFF5F5; }
+.compare-table td:last-child { color: #27AE60; background: #F0FFF4; }
+.compare-table tr:last-child td { border-bottom: none; }
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--light); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+  .header-top { padding: 10px 16px; }
+  .header-title { padding: 8px 16px; }
+  .header-title h1 { font-size: 12px; }
+  .nav-btn { padding: 11px 14px; font-size: 12px; }
+  main { padding: 20px 12px 40px; }
+  .hero { padding: 28px 20px; }
+  .hero h2 { font-size: 20px; }
+  .roadmap-header { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-top">
+    <div class="logos">
+      <!-- Логотипи з Three_logos.png через base64 або посилання -->
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Coat_of_arms_of_Ukraine.svg/60px-Coat_of_arms_of_Ukraine.svg.png" alt="Герб України" class="logo-img" style="height:32px;">
+      <div style="width:1px;height:32px;background:rgba(255,255,255,0.2);"></div>
+      <span style="color:white;font-family:'Unbounded',sans-serif;font-size:11px;font-weight:600;opacity:0.9;">МОН України</span>
+      <div style="width:1px;height:32px;background:rgba(255,255,255,0.2);"></div>
+      <span style="color:white;font-family:'Unbounded',sans-serif;font-size:11px;font-weight:600;opacity:0.9;">URA</span>
+      <div style="width:1px;height:32px;background:rgba(255,255,255,0.2);"></div>
+      <span style="color:rgba(255,255,255,0.7);font-size:11px;">Команда підтримки реформ МОН</span>
+    </div>
+    <span class="header-badge">2026</span>
+  </div>
+  <div class="header-title">
+    <div style="width:40px;height:40px;background:var(--accent);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">🏛️</div>
+    <h1>Наглядова рада закладу професійної освіти — <span>Дорожня карта формування</span></h1>
+  </div>
+  <nav>
+    <button class="nav-btn active" onclick="showSection('home')">🏠 Головна</button>
+    <button class="nav-btn" onclick="showSection('about')">ℹ️ Про наглядову раду</button>
+    <button class="nav-btn" onclick="showSection('roadmap')">🗺️ Дорожня карта</button>
+    <button class="nav-btn" onclick="showSection('library')">📁 Документи</button>
+    <button class="nav-btn" onclick="showSection('legal')">⚖️ Нормативна база</button>
+    <button class="nav-btn" onclick="showSection('monitoring')">📊 Моніторинг</button>
+    <button class="nav-btn" onclick="showSection('faq')">❓ FAQ</button>
+  </nav>
+</header>
+
+<main>
+
+<!-- ═══ HOME ═══ -->
+<div id="home" class="section active">
+  <div class="hero">
+    <div class="hero-tag">⚡ РЕФОРМА ПРОФОСВІТИ 2026</div>
+    <h2>Формуємо наглядові ради<br>закладів професійної освіти</h2>
+    <p>Покроковий інтерактивний путівник для засновників, роботодавців та керівників закладів. Весь алгоритм, усі документи, чіткі строки — в одному місці.</p>
+    <div class="hero-stats">
+      <div class="stat-item"><div class="stat-num">5</div><div class="stat-label">Етапів алгоритму</div></div>
+      <div class="stat-item"><div class="stat-num">14</div><div class="stat-label">Макс. членів ради</div></div>
+      <div class="stat-item"><div class="stat-num">4+</div><div class="stat-label">Роки повноважень</div></div>
+      <div class="stat-item"><div class="stat-num">300+</div><div class="stat-label">Здобувачів — обов'язково</div></div>
+      <div class="stat-item"><div class="stat-num">12.09</div><div class="stat-label">Старт повноважень 2026</div></div>
+    </div>
+  </div>
+
+  <h2 class="section-title">👥 Для кого цей ресурс</h2>
+  <div class="cards-grid">
+    <div class="info-card">
+      <div class="card-icon">🏛️</div>
+      <h3>Засновники</h3>
+      <p>МОН, ДОН, обласні та міські ради. Покроковий алгоритм, готові накази, чек-листи та зведена таблиця по закладах регіону.</p>
+    </div>
+    <div class="info-card">
+      <div class="card-icon">🏭</div>
+      <h3>Роботодавці</h3>
+      <p>Підприємства та організації-партнери закладів. Інформація про участь у наглядовій раді, права та обов'язки представників.</p>
+    </div>
+    <div class="info-card">
+      <div class="card-icon">🎓</div>
+      <h3>Заклади ПО</h3>
+      <p>Директори та адміністрація закладів. Розуміння ролі наглядової ради, підготовка документів, організація першого засідання.</p>
+    </div>
+  </div>
+
+  <h2 class="section-title">⏱️ Ключові строки 2026</h2>
+  <div class="table-card">
+    <div class="table-card-header">📅 Календарний план формування наглядових рад</div>
+    <table>
+      <thead><tr><th>Етап</th><th>Дії</th><th>Строк</th></tr></thead>
+      <tbody>
+        <tr><td><strong>1. Підготовка</strong></td><td>Перелік закладів, Порядок формування, наказ, база роботодавців</td><td style="color:var(--blue);font-weight:600;">до 15 червня 2026</td></tr>
+        <tr><td><strong>2. Оголошення</strong></td><td>Розміщення оголошення на сайті, листи-запрошення роботодавцям</td><td style="color:var(--blue);font-weight:600;">+5 роб. днів від наказу</td></tr>
+        <tr><td><strong>3. Відбір</strong></td><td>Прийом документів, двоетапна перевірка кандидатів</td><td style="color:var(--blue);font-weight:600;">Червень–Липень 2026</td></tr>
+        <tr><td><strong>4. Затвердження</strong></td><td>Наказ про склад, Положення про НР, публікація складу</td><td style="color:var(--blue);font-weight:600;">+5 роб. днів після відбору</td></tr>
+        <tr><td><strong>5. Перше засідання</strong></td><td>Обрання голови, заступника, секретаря, план роботи</td><td style="color:var(--accent);font-weight:600;">Вересень 2026</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="background:linear-gradient(135deg,#FFF8E7,#FFFBF0);border:1px solid #F5A623;border-radius:14px;padding:18px 24px;display:flex;align-items:center;gap:16px;">
+    <span style="font-size:28px;">⚠️</span>
+    <div>
+      <div style="font-family:'Unbounded',sans-serif;font-size:13px;font-weight:600;color:var(--navy);margin-bottom:4px;">Старт повноважень наглядових рад — 12 вересня 2026 року</div>
+      <div style="font-size:13px;color:#6B5900;">Заклади з контингентом понад 300 здобувачів зобов'язані сформувати наглядову раду. Для менших закладів — добровільно.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ ABOUT ═══ -->
+<div id="about" class="section">
+  <h2 class="section-title">ℹ️ Що таке наглядова рада ЗПО</h2>
+  <div class="cards-grid">
+    <div class="info-card">
+      <div class="card-icon">🏛️</div>
+      <h3>Визначення</h3>
+      <p>Наглядова рада — колегіальний орган управління закладом, що забезпечує баланс інтересів засновника та роботодавців, сприяє стратегічному розвитку та прозорості управління.</p>
+    </div>
+    <div class="info-card">
+      <div class="card-icon">⚖️</div>
+      <h3>Правова основа</h3>
+      <p>Закон України «Про професійну освіту» (ст. 42), Закон «Про освіту» (ст. 29), Наказ МОН № 1725 від 30.12.2025 — Примірне положення та Примірний порядок формування.</p>
+    </div>
+    <div class="info-card">
+      <div class="card-icon">👥</div>
+      <h3>Склад</h3>
+      <p>До 14 осіб на паритетних засадах: рівна кількість представників засновника та роботодавців. Здобувачі та працівники закладу — до складу не входять.</p>
+    </div>
+    <div class="info-card">
+      <div class="card-icon">📅</div>
+      <h3>Повноваження</h3>
+      <p>Строк не менше 4 років. Засідання — не рідше 1 разу на 2 місяці. Кворум — 2/3 складу. Рішення — відкрите голосування, більшість присутніх.</p>
+    </div>
+    <div class="info-card">
+      <div class="card-icon">✅</div>
+      <h3>Коли обов'язкова</h3>
+      <p>Обов'язково — для державних та комунальних закладів з контингентом понад 300 здобувачів. Не створюється — для закладів зі специфічними умовами, військових, навчальних центрів при УВП.</p>
+    </div>
+    <div class="info-card">
+      <div class="card-icon">🚫</div>
+      <h3>Принципи</h3>
+      <p>Незалежна від політичних партій та організацій. Члени здійснюють повноваження безоплатно. Принципи: колегіальність, прозорість, доброчесність, рівноправність.</p>
+    </div>
+  </div>
+
+  <h2 class="section-title">📋 Повноваження наглядової ради</h2>
+  <div class="table-card">
+    <div class="table-card-header">⚡ Що робить наглядова рада</div>
+    <table>
+      <thead><tr><th>Напрям</th><th>Повноваження</th></tr></thead>
+      <tbody>
+        <tr><td>📈 Стратегія</td><td>Бере участь у розробці та затверджує стратегію і перспективний план розвитку закладу, аналізує стан виконання</td></tr>
+        <tr><td>💰 Фінанси</td><td>Погоджує фінансовий план; дає згоду на закупівлю понад 5% від річного кошторису</td></tr>
+        <tr><td>🎓 Освітні програми</td><td>Погоджує перелік кваліфікацій, освітні програми, правила прийому, положення про внутрішню систему якості</td></tr>
+        <tr><td>👤 Керівник</td><td>Затверджує KPI директора, розглядає звіти, приймає рішення про преміювання; може ініціювати звільнення</td></tr>
+        <tr><td>📊 Контроль</td><td>Може ініціювати позаплановий інституційний аудит; звертатися до контролюючих органів при виявленні порушень</td></tr>
+        <tr><td>🔢 Прийом</td><td>Надає пропозиції щодо планового обсягу прийому на навчання для здобуття кваліфікацій</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="section-title">🔄 Порівняння: Було → Стало</h2>
+  <div class="table-card">
+    <table class="compare-table">
+      <thead><tr><th>❌ БУЛО</th><th>✅ СТАЛО</th></tr></thead>
+      <tbody>
+        <tr><td>Директора призначає засновник без відкритого конкурсу</td><td>Наглядова рада проводить відкритий конкурс і рекомендує засновнику кандидатуру директора</td></tr>
+        <tr><td>Бізнес лише «дає поради» без реальних повноважень</td><td>Бізнес має рівне представництво та реальні повноваження приймати рішення</td></tr>
+        <tr><td>Стратегію розвитку закладу визначає засновник одноосібно</td><td>Наглядова рада бере участь у розробці та затверджує стратегію закладу</td></tr>
+        <tr><td>Освітні програми визначаються без участі роботодавців</td><td>Освітні програми погоджуються наглядовою радою, де 50% — представники бізнесу</td></tr>
+        <tr><td>Немає вимірюваних критеріїв оцінки роботи директора</td><td>Наглядова рада затверджує KPI директора — підзвітність стає вимірюваною</td></tr>
+        <tr><td>Фінансові рішення — без зовнішнього контролю</td><td>Великі закупівлі та фінансовий план погоджуються наглядовою радою</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══ ROADMAP ═══ -->
+<div id="roadmap" class="section">
+  <div class="roadmap-header">
+    <div>
+      <h2>🗺️ Дорожня карта формування НР</h2>
+      <p style="font-size:13px;color:var(--muted);margin-top:4px;">Покроковий алгоритм для засновника — від рішення до першого засідання</p>
+    </div>
+    <div class="deadline-badge">⏱️ Старт повноважень: 12.09.2026</div>
+  </div>
+
+  <div class="stages">
+
+    <!-- ЕТАП 1 -->
+    <div class="stage-card" data-stage="1">
+      <div class="stage-header" onclick="toggleStage(this)">
+        <div class="stage-num">1</div>
+        <div class="stage-meta">
+          <div class="stage-title">Підготовка та прийняття рішення</div>
+          <div class="stage-period">🗓️ До 15 червня 2026</div>
+        </div>
+        <button class="stage-toggle">▼</button>
+      </div>
+      <div class="stage-body">
+        <ul class="steps-list">
+          <li><div class="step-dot"></div><span>Визначити перелік закладів, де НР є <strong>обов'язковою</strong> (контингент понад 300 здобувачів). Перевірити відсутність виключень.</span><span class="step-deadline">До старту</span></li>
+          <li><div class="step-dot"></div><span>Розробити або адаптувати <strong>регіональний Порядок формування НР</strong> на основі Примірного порядку МОН (Наказ № 1725)</span><span class="step-deadline">До старту</span></li>
+          <li><div class="step-dot"></div><span>Підготувати <strong>список роботодавців-партнерів</strong> кожного закладу (договори про практику, дуальне навчання, співпрацю, благодійники)</span><span class="step-deadline">До старту</span></li>
+          <li><div class="step-dot"></div><span>Прийняти <strong>наказ про формування НР</strong> із зазначенням: назви закладу, строку повноважень (не менше 4 років), строків подання документів, відповідальної особи</span><span class="step-deadline">До 15 червня</span></li>
+        </ul>
+        <div class="docs-title">📎 Документи цього етапу</div>
+        <div class="doc-links">
+          <a href="https://drive.google.com/drive/folders/166bfHHdwsYdbP3WEbrCMFOqTuhQOYynz" target="_blank" class="doc-link"><span class="doc-icon">📄</span> Проєкт наказу про формування НР</a>
+          <a href="https://drive.google.com/drive/folders/166bfHHdwsYdbP3WEbrCMFOqTuhQOYynz" target="_blank" class="doc-link"><span class="doc-icon">📊</span> Картка закладу ПО</a>
+          <a href="https://drive.google.com/drive/folders/166bfHHdwsYdbP3WEbrCMFOqTuhQOYynz" target="_blank" class="doc-link"><span class="doc-icon">📋</span> База роботодавців</a>
+          <a href="https://drive.google.com/drive/folders/166bfHHdwsYdbP3WEbrCMFOqTuhQOYynz" target="_blank" class="doc-link"><span class="doc-icon">✉️</span> Лист директорам ЗПО</a>
+          <a href="https://drive.google.com/drive/folders/166bfHHdwsYdbP3WEbrCMFOqTuhQOYynz" target="_blank" class="doc-link"><span class="doc-icon">☑️</span> Чек-лист засновника</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ЕТАП 2 -->
+    <div class="stage-card" data-stage="2">
+      <div class="stage-header" onclick="toggleStage(this)">
+        <div class="stage-num">2</div>
+        <div class="stage-meta">
+          <div class="stage-title">Оголошення та відбір кандидатів</div>
+          <div class="stage-period">🗓️ Червень – Липень 2026</div>
+        </div>
+        <button class="stage-toggle">▼</button>
+      </div>
+      <div class="stage-body">
+        <ul class="steps-list">
+          <li><div class="step-dot"></div><span>Розмістити <strong>оголошення про відбір кандидатів</strong> на офіційному сайті засновника та/або закладу</span><span class="step-deadline">+5 роб. днів від наказу</span></li>
+          <li><div class="step-dot"></div><span>Надіслати <strong>лист-запрошення</strong> кожному роботодавцю-партнеру закладу щодо можливості делегувати представника</span><span class="step-deadline">+5 роб. днів від наказу</span></li>
+          <li><div class="step-dot"></div><span>Прийняти та зареєструвати <strong>пакети документів</strong> від кандидатів (лист роботодавця, заявка, копія паспорту, довідки)</span><span class="step-deadline">У строк за наказом</span></li>
+          <li><div class="step-dot"></div><span>Оприлюднити <strong>перелік кандидатів</strong>, які подали документи, на офіційному сайті</span><span class="step-deadline">Після реєстрації</span></li>
+        </ul>
+        <div class="docs-title">📎 Документи цього етапу</div>
+        <div class="doc-links">
+          <a href="https://drive.google.com/drive/folders/166bfHHdwsYdbP3WEbrCMFOqTuhQOYynz" target="_blank" class="doc-link"><span class="doc-icon">📢</span> Зразок оголошення про відбір</a>
+          <a href="https://drive.google.com/drive/folders/166bfHHdwsYdbP3WEbrCMFOqTuhQOYynz" target="_blank" class="doc-link"><span class="doc-icon">✉️</span> Лист-запрошення роботодавцям</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ЕТАП 3 -->
+    <div class="stage-card" data-stage="3">
+      <div class="stage-header" onclick="toggleStage(this)">
+        <div class="stage-num">3</div>
+        <div class="stage-meta">
+          <div class="stage-title">Перевірка кандидатів та відбір</div>
+          <div class="stage-period">🗓️ Липень 2026</div>
+        </div>
+        <button class="stage-toggle">▼</button>
+      </div>
+      <div class="stage-body">
+        <ul class="steps-list">
+          <li><div class="step-dot"></div><span><strong>Етап А — Перевірка роботодавця:</strong> підтвердити факт співпраці із закладом (практика, дуальне навчання, допомога, інвестиції)</span><span class="step-deadline">У строк прийому</span></li>
+          <li><div class="step-dot"></div><span><strong>Етап Б — Перевірка кандидата:</strong> відповідність вимогам Закону (відсутність судимості, дієздатність, громадянство тощо)</span><span class="step-deadline">У строк прийому</span></li>
+          <li><div class="step-dot"></div><span>При відхиленні — невідкладно повідомити роботодавця. Роботодавець має право подати нову кандидатуру протягом <strong>3 робочих днів</strong></span><span class="step-deadline">Невідкладно</span></li>
+          <li><div class="step-dot"></div><span>Якщо кандидатів <strong>понад 7 осіб</strong> — запропонувати роботодавцям спільну кандидатуру (5 роб. днів) або створити комісію</span><span class="step-deadline">+5 роб. днів</span></li>
+          <li><div class="step-dot"></div><span>Призначити <strong>представників засновника</strong> у рівній кількості до кількості затверджених кандидатів від роботодавців (паритетний принцип)</span><span class="step-deadline">Липень</span></li>
+        </ul>
+        <div class="docs-title">📎 Документи цього етапу</div>
+        <div class="doc-links">
+          <a href="https://drive.google.com/drive/folders/166bfHHdwsYdbP3WEbrCMFOqTuhQOYynz" target="_blank" class="doc-link"><span class="doc-icon">☑️</span> Чек-лист перевірки кандидата</a>
+          <a href="https://drive.google.com/drive/folders/166bfHHdwsYdbP3WEbrCMFOqTuhQOYynz" target="_blank" class="doc-link"><span class="doc-icon">📝</span> Заявка кандидата (Додаток 1)</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ЕТАП 4 -->
+    <div class="stage-card" data-stage="4">
+      <div class="stage-header" onclick="toggleStage(this)">
+        <div class="stage-num">4</div>
+        <div class="stage-meta">
+          <div class="stage-title">Затвердження складу наглядової ради</div>
+          <div class="stage-period">🗓️ Серпень 2026</div>
+        </div>
+        <button class="stage-toggle">▼</button>
+      </div>
+      <div class="stage-body">
+        <ul class="steps-list">
+          <li><div class="step-dot"></div><span>Прийняти <strong>наказ про утворення НР та затвердження персонального складу</strong> (ПІБ, організація, посада, категорія кожного члена)</span><span class="step-deadline">+5 роб. днів після відбору</span></li>
+          <li><div class="step-dot"></div><span>Затвердити <strong>Положення про наглядову раду</strong> кожного закладу (на основі Примірного положення МОН)</span><span class="step-deadline">Одночасно з наказом</span></li>
+          <li><div class="step-dot"></div><span>Оприлюднити <strong>затверджений склад</strong> на сайтах засновника та закладу</span><span class="step-deadline">+5 роб. днів від наказу</span></li>
+        </ul>
+        <div class="docs-title">📎 Документи цього етапу</div>
+        <div class="doc-links">
+          <a href="https://drive.google.com/drive/folders/166bfHHdwsYdbP3WEbrCMFOqTuhQOYynz" target="_blank" class="doc-link"><span class="doc-icon">📄</span> Наказ про затвердження складу НР</a>
+          <a href="https://drive.google.com/drive/folders/166bfHHdwsYdbP3WEbrCMFOqTuhQOYynz" target="_blank" class="doc-link"><span class="doc-icon">✉️</span> Повідомлення членів НР</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ЕТАП 5 -->
+    <div class="stage-card" data-stage="5">
+      <div class="stage-header" onclick="toggleStage(this)">
+        <div class="stage-num">5</div>
+        <div class="stage-meta">
+          <div class="stage-title">Підготовка та проведення першого засідання</div>
+          <div class="stage-period">🗓️ Серпень – Вересень 2026</div>
+        </div>
+        <button class="stage-toggle">▼</button>
+      </div>
+      <div class="stage-body">
+        <ul class="steps-list">
+          <li><div class="step-dot"></div><span>Надіслати всім членам НР <strong>повідомлення</strong> про дату, час та місце першого засідання (не пізніше ніж за 2 робочі дні)</span><span class="step-deadline">За 2 роб. дні</span></li>
+          <li><div class="step-dot"></div><span>Забезпечити членів ради <strong>доступом до документів</strong> закладу (установчі, фінансові звіти, стратегія тощо)</span><span class="step-deadline">До засідання</span></li>
+          <li><div class="step-dot"></div><span>Провести <strong>перше засідання</strong>: обрання голови (таємне голосування), заступника та секретаря (відкрите голосування)</span><span class="step-deadline">Вересень 2026</span></li>
+          <li><div class="step-dot"></div><span>Затвердити <strong>річний план роботи</strong> НР із ключовими показниками ефективності</span><span class="step-deadline">Перше засідання</span></li>
+          <li><div class="step-dot"></div><span>Підписати <strong>протокол</strong> першого засідання; оприлюднити інформацію; направити до МОН/регіону звіт про створення НР</span><span class="step-deadline">Після засідання</span></li>
+        </ul>
+        <div class="docs-title">📎 Документи цього етапу</div>
+        <div class="doc-links">
+          <a href="https://drive.google.com/drive/folders/166bfHHdwsYdbP3WEbrCMFOqTuhQOYynz" target="_blank" class="doc-link"><span class="doc-icon">📋</span> Порядок денний першого засідання</a>
+          <a href="https://drive.google.com/drive/folders/166bfHHdwsYdbP3WEbrCMFOqTuhQOYynz" target="_blank" class="doc-link"><span class="doc-icon">✉️</span> Лист-повідомлення членів НР</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Зведена таблиця строків -->
+  <div style="margin-top:32px;">
+  <h2 class="section-title">⏱️ Зведена таблиця строків</h2>
+  <div class="table-card">
+    <div class="table-card-header">📋 Усі строки відповідно до Примірного порядку МОН (Наказ № 1725)</div>
+    <table>
+      <thead><tr><th>№</th><th>Дія засновника</th><th>Строк</th><th>Відлік від</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Розмістити оголошення про відбір кандидатів</td><td style="font-weight:600;color:var(--blue);">5 робочих днів</td><td>Рішення про формування НР</td></tr>
+        <tr><td>2</td><td>Надіслати повідомлення роботодавцям-партнерам</td><td style="font-weight:600;color:var(--blue);">5 робочих днів</td><td>Рішення про формування НР</td></tr>
+        <tr><td>3</td><td>Здійснити двоетапну перевірку кандидатів</td><td style="font-weight:600;color:var(--blue);">Протягом строку прийому</td><td>Отримання пакету документів</td></tr>
+        <tr><td>4</td><td>Повідомити роботодавця про відхилення кандидата</td><td style="font-weight:600;color:var(--red);">Невідкладно</td><td>Виявлення невідповідності</td></tr>
+        <tr><td>5</td><td>Прийняти нову кандидатуру замість відхиленої</td><td style="font-weight:600;color:var(--blue);">3 робочі дні</td><td>Повідомлення про відхилення</td></tr>
+        <tr><td>6</td><td>Запропонувати спільну кандидатуру (якщо >7)</td><td style="font-weight:600;color:var(--blue);">5 робочих днів</td><td>Завершення строку прийому документів</td></tr>
+        <tr><td>7</td><td>Прийняти рішення про склад НР (до 7 кандидатів)</td><td style="font-weight:600;color:var(--blue);">5 робочих днів</td><td>Завершення перевірки кандидатів</td></tr>
+        <tr><td>8</td><td>Прийняти рішення про склад НР (після комісії)</td><td style="font-weight:600;color:var(--blue);">5 робочих днів</td><td>Завершення відбору комісією</td></tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+</div>
+
+<!-- ═══ LIBRARY ═══ -->
+<div id="library" class="section">
+  <h2 class="section-title">📁 Бібліотека документів</h2>
+
+  <div class="lib-filter">
+    <button class="filter-btn active" onclick="filterLib('all', this)">Всі документи</button>
+    <button class="filter-btn" onclick="filterLib('1', this)">Етап 1</button>
+    <button class="filter-btn" onclick="filterLib('2', this)">Етап 2</button>
+    <button class="filter-btn" onclick="filterLib('3', this)">Етап 3</button>
+    <button class="filter-btn" onclick="filterLib('4', this)">Етап 4</button>
+    <button class="filter-btn" onclick="filterLib('5', this)">Етап 5</button>
+    <button class="filter-btn" onclick="filterLib('norm', this)">Нормативні</button>
+    <button class="filter-btn" onclick="filterLib('general', this)">Загальні</button>
+  </div>
+
+  <div class="lib-grid" id="libGrid">
+
+    <div class="lib-card" data-cat="general">
+      <div class="lib-card-top">
+        <div class="lib-card-tag tag-norm">Загальний</div>
+        <h4>Алгоритм дій засновника</h4>
+        <p>Покрокова інструкція з формування НР — від рішення до першого засідання. Зведена таблиця строків.</p>
+      </div>
+      <div class="lib-card-bottom">
+        <span class="lib-type">📄 DOCX</span>
+        <a href="https://drive.google.com/drive/folders/166bfHHdwsYdbP3WEbrCMFOqTuhQOYynz" target="_blank" class="lib-download">⬇️ Відкрити</a>
+      </div>
+    </div>
+
+    <div class="lib-card" data-cat="general">
+      <div class="lib-card-top">
+        <div class="lib-card-tag tag-norm">Загальний</div>
+        <h4>Пам'ятка засновника ЗПО</h4>
+        <p>Що таке НР, повноваження засновника, практичні кроки. Зручний довідник для відповідальних осіб.</p>
+      </div>
+      <div class="lib-card-bottom">
+        <span class="lib-type">📄 DOCX</span>
+        <a href="https://drive.google.com/drive/folders/166bfHHdwsYdbP3WEbrCMFOqTuhQOYynz" target="_blank" class="lib-download">⬇️ Відкрити</a>
+      </div>
+    </div>
+
+    <div class="lib-card" data-cat="general">
+      <div class="lib-card-top">
+        <div class="lib-card-tag tag-norm">Загальний</div>
+        <h4>Explainer: Нова модель управління ЗПО</h4>
+        <p>Роз'яснення нової моделі управління: порівняння «було/стало», повноваження, принципи діяльності НР.</p>
+      </div>
+      <div class="lib-card-bottom">
+        <span class="lib-type">📄 DOCX</span>
+        <a href="https://drive.google.com/drive/folders/166bfHHdwsYdbP3WEbrCMFOqTuhQOYynz" target="_blank" class="lib-download">⬇️ Відкрити</a>
+      </div>
+    </div>
+
+    <div class="lib-card" data-cat="general">
+      <div class="lib-card-top">
+        <div class="lib-card-tag tag-norm">Загальний</div>
+        <h4>Дорожня карта ДОН (НР 2026)</h4>
+        <p>Календарний план формування НР для регіону. Зведена таблиця по закладах із статусами.</p>
+      </div>
+      <div class="lib-card-bottom">
+        <span class="lib-type">📄 DOCX</span>
+        <a href="https://drive.google.com/drive/folders/166bfHHdwsYdbP3WEbrCMFOqTuhQOYynz" target="_blank" class="lib-download">⬇️ Відкрити</a>
+      </div>
+    </div>
+
+    <div class="lib-card" data-cat="general">
+      <div class="lib-card-top">
+        <div class="lib-card-tag tag-norm">Загальний</div>
+        <h4>Чек-лист засновника НР</h4>
+        <p>Детальний чек-лист для відповідального співробітника ДОН по всіх 6 етапах формування.</p>
+      </div>
+      <div class="lib-card-bottom">
+        <span class="lib-type">📄 DOCX</span>
+        <a href="https://drive.google.com/drive/folders/166bfHHdwsYdbP3WEbrCMFOqTuhQOYynz" target="_blank" class="lib-download">⬇️ Відкрити</a>
+      </div>
+    </div>
+
+    <div class="lib-card" data-cat="general">
+      <div class="lib-card-top">
+        <div class="lib-card-tag tag-norm">Загальний</div>
+        <h4>Інформація про стан формування НР</h4>
+        <p>Зведена аналітична інформація по регіонах і закладах щодо прогресу формування наглядових рад.</p>
+      </div>
+      <div class="lib-card-bottom">
+        <span class="lib-type">📄 DOCX</span>
+        <a href="https://drive.google.com/drive/folders/166bfHHdwsYdbP3WEbrCMFOqTuhQOYynz" target="_blank" class="lib-download">⬇️ Відкрити</a>
+      </div>
+    </div>
+
+    <div class="lib-card" data-cat="1">
+      <div class="lib-card-top">
+        <div class="lib-card-tag tag-1">Етап 1</div>
+        <h4>Проєкт наказу про формування НР (Додаток 1)</h4>
+        <p>Готовий зразок наказу засновника про формування наглядової ради конкретного закладу.</p>
+      </div>
+      <div class="lib-card-bottom">
+        <span class="lib-type">📄 DOCX</span>
+        <a href="https://drive.google.com/drive/folders/166bfHHdwsYdbP3WEbrCMFOqTuhQOYynz" target="_blank" class="lib-download">⬇️ Відкрити</a>
+      </div>
+    </div>
+
+    <div class="lib-card" data-cat="1">
+      <div class="lib-card-top">
+        <div class="lib-card-tag tag-1">Етап 1</div>
+        <h4>База роботодавців (Додаток 1.2)</h4>
+        <p>Шаблон бази даних роботодавців-партнерів закладу для формування списку потенційних кандидатів.</p>
+      </div>
+      <div class="lib-card-bottom">
+        <span class="lib-type">📊 XLSX</span>
+        <a href="https://drive.google.com/drive/folders/166bfHHdwsYdbP3WEbrCMFOqTuhQOYynz" target="_blank" class="lib-download">⬇️ Відкрити</a>
+      </div>
+    </div>
+
+    <div class="lib-card" data-cat="1">
+      <div class="lib-card-top">
+        <div class="lib-card-tag tag-1">Етап 1</div>
+        <h4>Картка закладу ПО</h4>
+        <p>Форма для збору основної інформації про заклад: контингент, роботодавці, відповідальні особи.</p>
+      </div>
+      <div class="lib-card-bottom">
+        <span class="lib-type">📄 DOCX</span>
+        <a href="https://drive.google.com/drive/folders/166bfHHdwsYdbP3WEbrCMFOqTuhQOYynz" target="_blank" class="lib-download">⬇️ Відкрити</a>
+      </div>
+    </div>
+
+    <div class="lib-card" data-cat="1">
+      <div class="lib-card-top">
+        <div class="lib-card-tag tag-1">Етап 1</div>
+        <h4>Лист директорам ЗПО</h4>
+        <p>Зразок листа від ДОН до директорів закладів з проханням надати список роботодавців-партнерів.</p>
+      </div>
+      <div class="lib-card-bottom">
+        <span class="lib-type">📄 DOCX</span>
+        <a href="https://drive.google.com/drive/folders/166bfHHdwsYdbP3WEbrCMFOqTuhQOYynz" target="_blank" class="lib-download">⬇️ Відкрити</a>
+      </div>
+    </div>
+
+    <div class="lib-card" data-cat="2">
+      <div class="lib-card-top">
+        <div class="lib-card-tag tag-2">Етап 2</div>
+        <h4>Зразок оголошення про відбір (Додаток 2)</h4>
+        <p>Готовий шаблон публічного оголошення про відбір кандидатів до складу наглядової ради.</p>
+      </div>
+      <div class="lib-card-bottom">
+        <span class="lib-type">📄 DOCX</span>
+        <a href="https://drive.google.com/drive/folders/166bfHHdwsYdbP3WEbrCMFOqTuhQOYynz" target="_blank" class="lib-download">⬇️ Відкрити</a>
+      </div>
+    </div>
+
+    <div class="lib-card" data-cat="3">
+      <div class="lib-card-top">
+        <div class="lib-card-tag tag-3">Етап 3</div>
+        <h4>Чек-лист перевірки кандидата (Додаток 5)</h4>
+        <p>Форма двоетапної перевірки: роботодавця (факт співпраці) та кандидата (вимоги Закону).</p>
+      </div>
+      <div class="lib-card-bottom">
+        <span class="lib-type">📄 DOCX</span>
+        <a href="https://drive.google.com/drive/folders/166bfHHdwsYdbP3WEbrCMFOqTuhQOYynz" target="_blank" class="lib-download">⬇️ Відкрити</a>
+      </div>
+    </div>
+
+    <div class="lib-card" data-cat="4">
+      <div class="lib-card-top">
+        <div class="lib-card-tag tag-4">Етап 4</div>
+        <h4>Наказ про затвердження складу НР (Додаток 7)</h4>
+        <p>Проєкт наказу про утворення наглядової ради та затвердження її персонального складу.</p>
+      </div>
+      <div class="lib-card-bottom">
+        <span class="lib-type">📄 DOCX</span>
+        <a href="https://drive.google.com/drive/folders/166bfHHdwsYdbP3WEbrCMFOqTuhQOYynz" target="_blank" class="lib-download">⬇️ Відкрити</a>
+      </div>
+    </div>
+
+    <div class="lib-card" data-cat="5">
+      <div class="lib-card-top">
+        <div class="lib-card-tag tag-5">Етап 5</div>
+        <h4>Лист-повідомлення членів НР</h4>
+        <p>Зразок листа-повідомлення всіх членів наглядової ради про перше засідання.</p>
+      </div>
+      <div class="lib-card-bottom">
+        <span class="lib-type">📄 DOCX</span>
+        <a href="https://drive.google.com/drive/folders/166bfHHdwsYdbP3WEbrCMFOqTuhQOYynz" target="_blank" class="lib-download">⬇️ Відкрити</a>
+      </div>
+    </div>
+
+    <div class="lib-card" data-cat="5">
+      <div class="lib-card-top">
+        <div class="lib-card-tag tag-5">Етап 5</div>
+        <h4>Порядок денний першого засідання НР</h4>
+        <p>Шаблон порядку денного: обрання голови (таємне голосування), заступника, секретаря, план роботи.</p>
+      </div>
+      <div class="lib-card-bottom">
+        <span class="lib-type">📄 DOCX</span>
+        <a href="https://drive.google.com/drive/folders/166bfHHdwsYdbP3WEbrCMFOqTuhQOYynz" target="_blank" class="lib-download">⬇️ Відкрити</a>
+      </div>
+    </div>
+
+    <div class="lib-card" data-cat="norm">
+      <div class="lib-card-top">
+        <div class="lib-card-tag tag-norm">Нормативний</div>
+        <h4>Наказ МОН № 1725 від 30.12.2025</h4>
+        <p>Про затвердження Примірного положення про НР та Примірного порядку формування НР ЗПО.</p>
+      </div>
+      <div class="lib-card-bottom">
+        <span class="lib-type">📋 PDF</span>
+        <a href="https://drive.google.com/drive/folders/166bfHHdwsYdbP3WEbrCMFOqTuhQOYynz" target="_blank" class="lib-download">⬇️ Відкрити</a>
+      </div>
+    </div>
+
+    <div class="lib-card" data-cat="norm">
+      <div class="lib-card-top">
+        <div class="lib-card-tag tag-norm">Нормативний</div>
+        <h4>Закон України «Про професійну освіту»</h4>
+        <p>Повний текст Закону (2025 р.). Ст. 42 — правова основа наглядових рад ЗПО.</p>
+      </div>
+      <div class="lib-card-bottom">
+        <span class="lib-type">📋 PDF</span>
+        <a href="https://drive.google.com/drive/folders/166bfHHdwsYdbP3WEbrCMFOqTuhQOYynz" target="_blank" class="lib-download">⬇️ Відкрити</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ LEGAL ═══ -->
+<div id="legal" class="section">
+  <h2 class="section-title">⚖️ Нормативна база</h2>
+
+  <div class="legal-grid">
+    <div class="legal-card">
+      <div class="legal-card-header">
+        <div class="legal-icon law">📘</div>
+        <div>
+          <h3>Закон України «Про професійну освіту»</h3>
+          <div class="legal-sub">Редакція 2025 року · Основний законодавчий акт</div>
+        </div>
+      </div>
+      <div class="legal-articles">
+        <div class="legal-article"><span class="art-num">Ст. 42</span><span>Наглядова рада ЗПО — склад, обов'язковість, повноваження, порядок формування</span></div>
+        <div class="legal-article"><span class="art-num">Ст. 29</span><span>Органи управління ЗПО — загальні засади (Закон «Про освіту»)</span></div>
+        <div class="legal-article"><span class="art-num">Ст. 41</span><span>Педагогічна рада — повноваження та взаємодія з наглядовою радою</span></div>
+      </div>
+      <a href="https://drive.google.com/drive/folders/166bfHHdwsYdbP3WEbrCMFOqTuhQOYynz" target="_blank" class="legal-download-btn">📥 Завантажити повний текст Закону</a>
+    </div>
+
+    <div class="legal-card">
+      <div class="legal-card-header">
+        <div class="legal-icon order">📋</div>
+        <div>
+          <h3>Наказ МОН України № 1725</h3>
+          <div class="legal-sub">від 30.12.2025 · Підписано Міністром Оксеном Лісовим</div>
+        </div>
+      </div>
+      <div class="legal-articles">
+        <div class="legal-article"><span class="art-num">Додаток 1</span><span>Примірне положення про наглядову раду ЗПО</span></div>
+        <div class="legal-article"><span class="art-num">Додаток 2</span><span>Примірний порядок формування наглядової ради ЗПО</span></div>
+        <div class="legal-article"><span class="art-num">Додаток 1 до Порядку</span><span>Заявка кандидата в члени наглядової ради</span></div>
+        <div class="legal-article"><span class="art-num">Додаток 2 до Порядку</span><span>Згода на обробку персональних даних</span></div>
+      </div>
+      <a href="https://drive.google.com/drive/folders/166bfHHdwsYdbP3WEbrCMFOqTuhQOYynz" target="_blank" class="legal-download-btn">📥 Завантажити Наказ № 1725</a>
+    </div>
+  </div>
+
+  <h2 class="section-title">📌 Ключові норми Закону (ст. 42)</h2>
+  <div class="table-card">
+    <div class="table-card-header">📖 Стаття 42 Закону «Про професійну освіту» — основні положення</div>
+    <table>
+      <thead><tr><th>Параметр</th><th>Норма Закону</th></tr></thead>
+      <tbody>
+        <tr><td>Обов'язковість</td><td>Наглядова рада обов'язково утворюється у державних та комунальних ЗПО за рішенням засновника</td></tr>
+        <tr><td>Виключення</td><td>Може не створюватись: контингент менше 300 здобувачів; специфічні умови навчання; військові заклади; навчальні центри при УВП</td></tr>
+        <tr><td>Склад</td><td>До 14 осіб на паритетних засадах: рівна кількість представників засновника та роботодавців</td></tr>
+        <tr><td>Хто не може входити</td><td>Здобувачі, інші особи, що навчаються у закладі, та працівники цього закладу</td></tr>
+        <tr><td>Строк повноважень</td><td>Визначається засновником, але не менше ніж на 4 роки</td></tr>
+        <tr><td>Участь у колегіальних органах</td><td>Члени НР мають право брати участь у роботі колегіальних органів закладу з правом дорадчого голосу</td></tr>
+        <tr><td>Якщо НР не створена</td><td>Повноваження наглядової ради виконує засновник закладу</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══ MONITORING ═══ -->
+<div id="monitoring" class="section">
+  <h2 class="section-title">📊 Моніторинг формування НР</h2>
+
+  <div style="background:linear-gradient(135deg,#E8F0FD,#F0F6FF);border:1px solid var(--border);border-radius:14px;padding:16px 20px;margin-bottom:24px;display:flex;align-items:center;gap:12px;">
+    <span style="font-size:22px;">ℹ️</span>
+    <div style="font-size:13px;color:#4A5568;">Дані оновлюються відповідальним адміністратором. Для підключення до реальної бази даних — інтеграція з Google Sheets. Поточні дані — демонстраційні.</div>
+  </div>
+
+  <div class="monitoring-summary">
+    <div class="mon-card"><div class="mon-num total">24</div><div class="mon-label">Закладів всього</div></div>
+    <div class="mon-card"><div class="mon-num done">7</div><div class="mon-label">НР сформовано</div></div>
+    <div class="mon-card"><div class="mon-num progress">11</div><div class="mon-label">В процесі</div></div>
+    <div class="mon-card"><div class="mon-num pending">6</div><div class="mon-label">Не розпочато</div></div>
+  </div>
+
+  <div class="mon-progress-bar">
+    <h3>Загальний прогрес регіону</h3>
+    <div class="progress-track"><div class="progress-fill" style="width:75%"></div></div>
+    <div class="progress-labels"><span>0%</span><span style="color:var(--sky);font-weight:600;">75% — виконано</span><span>100%</span></div>
+  </div>
+
+  <div class="mon-table-wrapper">
+    <div class="mon-table-header">
+      <span>📋 Статус по закладах регіону</span>
+      <span class="update-note">Оновлено: травень 2026</span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Назва закладу</th>
+          <th>Контингент</th>
+          <th>Обов'язк.</th>
+          <th>Наказ (план)</th>
+          <th>Склад (план)</th>
+          <th>Статус</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>Відокремлений структурний підрозділ «Центр проф. освіти №1»</td><td>420</td><td>✅ Так</td><td>01.06.2026</td><td>25.07.2026</td><td><span class="status-badge status-done">● Сформовано</span></td></tr>
+        <tr><td>2</td><td>Чернівецький центр профосвіти</td><td>380</td><td>✅ Так</td><td>05.06.2026</td><td>01.08.2026</td><td><span class="status-badge status-progress">● В процесі</span></td></tr>
+        <tr><td>3</td><td>Державний навчальний заклад «Профліцей»</td><td>510</td><td>✅ Так</td><td>10.06.2026</td><td>05.08.2026</td><td><span class="status-badge status-done">● Сформовано</span></td></tr>
+        <tr><td>4</td><td>Вище профтехучилище №2</td><td>290</td><td>➖ Ні</td><td>—</td><td>—</td><td><span class="status-badge status-pending">● Не розпочато</span></td></tr>
+        <tr><td>5</td><td>Центр підготовки і перепідготовки кадрів</td><td>340</td><td>✅ Так</td><td>15.06.2026</td><td>—</td><td><span class="status-badge status-progress">● В процесі</span></td></tr>
+        <tr><td>6</td><td>Навчально-практичний центр «Агро»</td><td>180</td><td>➖ Ні</td><td>—</td><td>—</td><td><span class="status-badge status-pending">● Не розпочато</span></td></tr>
+        <tr><td>7</td><td>Буковинський центр профтехосвіти</td><td>460</td><td>✅ Так</td><td>01.06.2026</td><td>20.07.2026</td><td><span class="status-badge status-done">● Сформовано</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══ FAQ ═══ -->
+<div id="faq" class="section">
+  <h2 class="section-title">❓ Часті запитання</h2>
+  <div class="faq-list">
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)"><span>Чи обов'язково створювати наглядову раду у кожному ЗПО?</span><span class="faq-icon">+</span></div>
+      <div class="faq-a">Ні, не у кожному. Наглядова рада обов'язково створюється у державних та комунальних ЗПО, де <strong>середньорічна чисельність здобувачів понад 300 осіб</strong>. Не є обов'язковою для закладів зі специфічними умовами навчання, військових ЗПО та навчальних центрів при установах виконання покарань. Для закладів з контингентом менше 300 — наглядова рада <em>може</em> не створюватися, але й не забороняється.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)"><span>Хто може бути членом наглядової ради від роботодавців?</span><span class="faq-icon">+</span></div>
+      <div class="faq-a">Представником роботодавців може бути особа, делегована роботодавцем, організацією роботодавців або їх об'єднанням, які: надають матеріальну/благодійну допомогу закладу, інвестують у його діяльність, співпрацюють у рамках дуальної форми освіти або забезпечують практичну підготовку здобувачів. Кандидат повинен відповідати вимогам Закону: бути дієздатним, не мати судимості, не бути громадянином держави-агресора тощо.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)"><span>Чи можуть директор або вчителі входити до складу наглядової ради?</span><span class="faq-icon">+</span></div>
+      <div class="faq-a"><strong>Ні.</strong> До складу наглядової ради не можуть входити здобувачі професійної освіти, інші особи, які навчаються у закладі, та <strong>працівники цього закладу</strong>. Директор та педагогічні працівники можуть брати участь у засіданнях НР лише з дорадчим правом голосу — але не як члени ради.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)"><span>Скільки членів може мати наглядова рада?</span><span class="faq-icon">+</span></div>
+      <div class="faq-a">Загальна кількість членів наглядової ради <strong>не може перевищувати 14 осіб</strong>. Склад формується на паритетних засадах — рівна кількість представників засновника та роботодавців. Наприклад: 4 від засновника + 4 від роботодавців = 8 членів. Мінімальної кількості Закон не встановлює, але засідання є правомочним за наявності <strong>2/3 складу</strong>.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)"><span>Якщо кандидатів від роботодавців більше 7 — що робити?</span><span class="faq-icon">+</span></div>
+      <div class="faq-a">Якщо кандидатів від роботодавців більше 7 осіб, засновник протягом <strong>5 робочих днів</strong> від завершення строку прийому документів пропонує роботодавцям надати <strong>спільну кандидатуру</strong>. Якщо роботодавці не дійшли згоди — засновник створює <strong>робочу комісію</strong> для відбору, склад та порядок роботи якої затверджується окремим рішенням. Після відбору комісією засновник протягом 5 робочих днів приймає рішення про склад НР.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)"><span>Наказ МОН № 1725 є обов'язковим чи рекомендаційним?</span><span class="faq-icon">+</span></div>
+      <div class="faq-a">Примірне положення та Примірний порядок, затверджені Наказом МОН № 1725, мають <strong>рекомендаційний характер</strong>. Засновник може використати їх без змін або розробити власні документи з урахуванням місцевої специфіки — але <strong>в межах обов'язкових вимог Закону «Про професійну освіту»</strong>. Тобто свобода є, але обходити норми Закону — не можна.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)"><span>Чи отримують члени наглядової ради зарплату або винагороду?</span><span class="faq-icon">+</span></div>
+      <div class="faq-a"><strong>Ні.</strong> Члени наглядової ради здійснюють свої повноваження <strong>на безоплатній основі</strong>. Наглядова рада є незалежною від політичних партій, релігійних організацій та громадських об'єднань. Це принципова норма, що забезпечує незалежність та доброчесність ради.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)"><span>Коли наглядова рада розпочинає свою роботу?</span><span class="faq-icon">+</span></div>
+      <div class="faq-a">Наглядова рада розпочинає виконання повноважень після проведення <strong>першого засідання</strong>, на якому обирається голова (таємне голосування), заступник та секретар. Відповідно до орієнтовного плану 2026 року — перші засідання мають відбутися у <strong>вересні 2026 року</strong>. Офіційний старт повноважень усіх сформованих рад — <strong>12 вересня 2026 року</strong>.</div>
+    </div>
+
+  </div>
+</div>
+
+</main>
+
+<footer style="background:var(--navy);color:rgba(255,255,255,0.5);text-align:center;padding:20px;font-size:12px;margin-top:40px;">
+  Розроблено на основі Закону України «Про професійну освіту» та Наказу МОН № 1725 від 30.12.2025 · МОН України · URA · Команда підтримки реформ МОН
+</footer>
+
+<script>
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const idx = ['home','about','roadmap','library','legal','monitoring','faq'].indexOf(id);
+  document.querySelectorAll('.nav-btn')[idx].classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function toggleStage(header) {
+  const card = header.parentElement;
+  card.classList.toggle('open');
+}
+
+function toggleFaq(el) {
+  const item = el.parentElement;
+  item.classList.toggle('open');
+}
+
+function filterLib(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.lib-card').forEach(card => {
+    if (cat === 'all' || card.dataset.cat === cat) {
+      card.style.display = '';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+// Відкрити перший етап за замовчуванням
+document.querySelector('.stage-card').classList.add('open');
+</script>
+</body>
+</html>
